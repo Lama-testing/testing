@@ -84,5 +84,7 @@ def test_flight(driver):
 
     flight_deals = driver.find_elements(By.XPATH,"//div[@class = 'FlightsResults_dayViewItems__NzJiY']")
     sleep(2)
+    print(len(flight_deals))
+    
     assert len(flight_deals) > 0, "No flight deals found — search might have failed or no flights are available."
     sleep(3)
