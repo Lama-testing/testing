@@ -133,3 +133,24 @@ def test_1(driver):
     results = driver.find_elements(By.XPATH,
                                    "//div[@class='HotelCardsListChunk_HotelCardsListChunk__card__O2gi3 HotelCardsListChunk_HotelCardsListChunk__card--newLayout__DTkR9 HotelCardsListChunk_Animation__zkf0j']")
     assert len(results) > 0, "No hotel results were found."
+
+    # -Login via email Testing (first time/ new email)
+    # def test_1(driver):
+    #     login_btn = driver.find_element(By.XPATH, "//span[@class='LoginButton_loginText__N2E5Y']")
+    #     login_btn.click()
+    #     sleep(15)
+    #
+    #     email_btn = driver.find_element(By.XPATH, "//span[text()='Continue with email']")
+    #     email_btn.click()
+    #     sleep(3)
+    #
+    #     input_email = driver.find_element(By.ID, 'email')
+    #     input_email.send_keys('nnnoorr225@gmail.com')
+    #
+    #     next_btn = driver.find_element(By.XPATH, "//div[@class='js-progressionButton']")
+    #     next_btn.click()
+    #     sleep(3)
+    #
+    #     notf_btn = driver.find_element(By.XPATH, "//button[text()='Maybe later']")
+    #     notf_btn.click()
+    #     sleep(3)
