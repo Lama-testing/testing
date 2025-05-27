@@ -12,11 +12,15 @@ def generate_email(base="test", domain="gmail.com"):
 
 @pytest.fixture
 def driver():
-
+    # Setup undetected Chrome driver
     options = uc.ChromeOptions()
     options.add_argument('--start-maximized')
 
+    # You can add more options as needed
+    # options.add_argument('--headless')  # Optional, for headless mode
+
     driver = uc.Chrome(options=options)
+    driver.maximize_window()
     driver.get('https://www.skyscanner.co.il')
     sleep(3)
     yield driver
@@ -24,7 +28,7 @@ def driver():
 
 
 def test_flight(driver):
-    sleep(3)
+    sleep(20)
     city1 = driver.find_element(By.XPATH,"//input[@id = 'originInput-input']")
     city1.clear()
     city1.send_keys('Ben Gurion Intl (TLV)')
@@ -84,7 +88,5 @@ def test_flight(driver):
 
     flight_deals = driver.find_elements(By.XPATH,"//div[@class = 'FlightsResults_dayViewItems__NzJiY']")
     sleep(2)
-    print(len(flight_deals))
-
     assert len(flight_deals) > 0, "No flight deals found — search might have failed or no flights are available."
     sleep(3)
