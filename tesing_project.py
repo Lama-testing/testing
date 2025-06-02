@@ -204,10 +204,113 @@ def driver():
 #     assert len(results) > 0, "No hotel results were found."
 # >>>>>>> d90b8b7359e3782660b02aa306c8945da43aeeff
 #===================================================================
-def test_sorting_flights(driver):
+# def test_sorting_flights(driver):
+#
+#     sleep(3)
+#     city1 = driver.find_element(By.XPATH, "//input[@id = 'originInput-input']")
+#     city1.clear()
+#     city1.send_keys('Ben Gurion Intl (TLV)')
+#     sleep(2)
+#
+#     first_option = driver.find_element(By.XPATH, "//span[text()='Ben Gurion Intl (TLV)']")
+#     first_option.click()
+#     sleep(1)
+#
+#     city2 = driver.find_element(By.XPATH, "//input[@id = 'destinationInput-input']")
+#     city2.clear()
+#     city2.send_keys('Berlin Brandenburg (BER)')
+#     sleep(2)
+#
+#     first_opt = driver.find_element(By.XPATH, "//span[text()='Berlin Brandenburg (BER)']")
+#     first_opt.click()
+#     sleep(1)
+#
+#     date1 = driver.find_element(By.XPATH, "//span[text() ='Depart']")
+#     date1.click()
+#     sleep(2)
+#
+#     s_date = driver.find_elements(By.XPATH, "//button[@class ='CustomCalendar_day__MzVhY']")
+#     s_date[1].click()
+#     sleep(1)
+#
+#     date2 = driver.find_element(By.XPATH, "//span[text() = 'Add date']")
+#     date2.click()
+#     sleep(2)
+#     t_date = driver.find_elements(By.XPATH, "//button[@class = 'CustomCalendar_day__MzVhY']")
+#     t_date[20].click()
+#     sleep(2)
+#     btn_date_apply = driver.find_element(By.XPATH, "//button[text() = 'Apply']")
+#     btn_date_apply.click()
+#     sleep(2)
+#     travellers = driver.find_element(By.XPATH, "//span[text() = 'Travelers and cabin class']")
+#     travellers.click()
+#     sleep(2)
+#     adult = driver.find_element(By.XPATH, "//input[@id = 'adult-nudger']")
+#     adult.clear()
+#     adult.send_keys('2')
+#     sleep(2)
+#     plus_child = driver.find_element(By.XPATH, "//button[@title = 'More Children']")
+#     plus_child.click()
+#     sleep(1)
+#     age1 = driver.find_element(By.XPATH, "//select[@id = 'children-age-dropdown-0']")
+#     select = Select(age1)
+#     #     #  Option 2: Select by value
+#     select.select_by_value("12")
+#     sleep(2)
+#     btn_apply = driver.find_element(By.XPATH, "//button[text() = 'Apply']")
+#     btn_apply.click()
+#     sleep(2)
+#     search = driver.find_element(By.XPATH, "//button[@data-testid = 'desktop-cta']")
+#     search.click()
+#     sleep(10)
+#
+#     sort1 = driver.find_element(By.XPATH, "//select[@id = 'secondarySort']")
+#     select = Select(sort1)
+#     select.select_by_value("CHEAPEST")
+#     sleep(2)
+#
+#     prices = driver.find_elements(By.XPATH, "//span[@class = 'BpkText_bpk-text__MjhhY BpkText_bpk-text--lg__MjFkN']")
+#
+#     print(len(prices))
+#
+#     max_num = 0
+#     min_num = 0
+#
+#     for i in range(len(prices)):
+#
+#         if i < len(prices) -1:
+#             assert int((prices[i].text)[1:]), 'test sorting failed'
+#
+#     print('Test Pass')
+#
+#     sleep(2)
+#=================================================
+def test_saved_flights(driver):
+    sleep(15)
 
+    login = driver.find_element(By.XPATH,"//span[text() ='Log in']")
+    login.click()
+    sleep(2)
+
+    cont_w_email = driver.find_element(By.XPATH,"//button[@class = 'BpkButton_bpk-button__OTE4Z BpkButton_bpk-button--large__NTAyN BpkButton_bpk-button--secondary__ZmJjM EmailLoginButton_email-login-button__Nzc5Y']")
+    cont_w_email.click()
+    sleep(2)
+
+    email_input = driver.find_element(By.XPATH,"//input[@id = 'email']")
+    email = generate_email()
+    email_input.send_keys(email)
+    sleep(4)
+
+    btn_next = driver.find_element(By.XPATH,"//button[@aria-label = 'verify button']")
+    btn_next.click()
+    sleep(7)
+
+    btn_later = driver.find_element(By.XPATH,"//button[text() = 'Maybe later']")
+    btn_later.click()
     sleep(3)
-    city1 = driver.find_element(By.XPATH, "//input[@id = 'originInput-input']")
+
+
+    city1 = driver.find_element(By.XPATH,"//input[@id = 'originInput-input']")
     city1.clear()
     city1.send_keys('Ben Gurion Intl (TLV)')
     sleep(2)
@@ -216,7 +319,7 @@ def test_sorting_flights(driver):
     first_option.click()
     sleep(1)
 
-    city2 = driver.find_element(By.XPATH, "//input[@id = 'destinationInput-input']")
+    city2 = driver.find_element(By.XPATH,"//input[@id = 'destinationInput-input']")
     city2.clear()
     city2.send_keys('Berlin Brandenburg (BER)')
     sleep(2)
@@ -233,54 +336,120 @@ def test_sorting_flights(driver):
     s_date[1].click()
     sleep(1)
 
-    date2 = driver.find_element(By.XPATH, "//span[text() = 'Add date']")
+    date2 = driver.find_element(By.XPATH,"//span[text() = 'Add date']")
     date2.click()
     sleep(2)
-    t_date = driver.find_elements(By.XPATH, "//button[@class = 'CustomCalendar_day__MzVhY']")
+
+    t_date = driver.find_elements(By.XPATH,"//button[@class = 'CustomCalendar_day__MzVhY']")
     t_date[20].click()
     sleep(2)
-    btn_date_apply = driver.find_element(By.XPATH, "//button[text() = 'Apply']")
+    btn_date_apply = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
     btn_date_apply.click()
     sleep(2)
-    travellers = driver.find_element(By.XPATH, "//span[text() = 'Travelers and cabin class']")
+
+    travellers = driver.find_element(By.XPATH,"//span[text() = 'Travelers and cabin class']")
     travellers.click()
     sleep(2)
-    adult = driver.find_element(By.XPATH, "//input[@id = 'adult-nudger']")
+
+    adult = driver.find_element(By.XPATH,"//input[@id = 'adult-nudger']")
     adult.clear()
     adult.send_keys('2')
     sleep(2)
-    plus_child = driver.find_element(By.XPATH, "//button[@title = 'More Children']")
+
+    plus_child = driver.find_element(By.XPATH,"//button[@title = 'More Children']")
     plus_child.click()
     sleep(1)
-    age1 = driver.find_element(By.XPATH, "//select[@id = 'children-age-dropdown-0']")
+
+    age1 = driver.find_element(By.XPATH,"//select[@id = 'children-age-dropdown-0']")
     select = Select(age1)
-    #     #  Option 2: Select by value
+        #     #  Option 2: Select by value
     select.select_by_value("12")
     sleep(2)
-    btn_apply = driver.find_element(By.XPATH, "//button[text() = 'Apply']")
+
+    btn_apply  = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
     btn_apply.click()
     sleep(2)
-    search = driver.find_element(By.XPATH, "//button[@data-testid = 'desktop-cta']")
+
+    search = driver.find_element(By.XPATH,"//button[@data-testid = 'desktop-cta']")
     search.click()
-    sleep(10)
+    sleep(5)
 
-    sort1 = driver.find_element(By.XPATH, "//select[@id = 'secondarySort']")
-    select = Select(sort1)
-    select.select_by_value("CHEAPEST")
+    btn_save = driver.find_element(By.XPATH,"//button[@aria-label = 'Save flight, option 1 from Ben Gurion Intl to Berlin Brandenburg']")
+    btn_save.click()
+    sleep(5)
+
+    btn_manage = driver.find_element(By.XPATH,"//p[text() = 'Manage alert']")
+    sleep(2)
+    btn_manage.click()
     sleep(2)
 
-    prices = driver.find_elements(By.XPATH, "//span[@class = 'BpkText_bpk-text__MjhhY BpkText_bpk-text--lg__MjFkN']")
-
-    print(len(prices))
-
-    max_num = 0
-    min_num = 0
-
-    for i in range(len(prices)):
-
-        if i < len(prices) -1:
-            assert int((prices[i].text)[1:]), 'test sorting failed'
-
-    print('Test Pass')
+    saved_flight = driver.find_element(By.XPATH,"//span[@class = 'BpkText_bpk-text__ZjI3M BpkText_bpk-text--heading-4__MDlkY']")
 
     sleep(2)
+    assert saved_flight.text == 'Tel Aviv to Berlin', "Flight not saved!"
+    sleep(2)
+#=========================================================================
+# def test_same_deptodes(driver):
+#     sleep(25)
+#
+#     city1 = driver.find_element(By.XPATH,"//input[@id = 'originInput-input']")
+#     city1.clear()
+#     city1.send_keys('Ben Gurion Intl (TLV)')
+#     sleep(2)
+#
+#     first_option = driver.find_element(By.XPATH, "//span[text()='Ben Gurion Intl (TLV)']")
+#     first_option.click()
+#     sleep(1)
+#
+#     city2 = driver.find_element(By.XPATH, "//input[@id = 'destinationInput-input']")
+#     city2.clear()
+#     city2.send_keys('Ben Gurion Intl (TLV)')
+#     sleep(2)
+#
+#     first_option = driver.find_element(By.XPATH, "//span[text()='Ben Gurion Intl (TLV)']")
+#     first_option.click()
+#     sleep(1)
+#
+#     date1 = driver.find_element(By.XPATH, "//span[text() ='Depart']")
+#     date1.click()
+#     sleep(2)
+#
+#     s_date = driver.find_elements(By.XPATH, "//button[@class ='CustomCalendar_day__MzVhY']")
+#     s_date[1].click()
+#     sleep(1)
+#
+#     date2 = driver.find_element(By.XPATH,"//span[text() = 'Add date']")
+#     date2.click()
+#     sleep(2)
+#
+#     t_date = driver.find_elements(By.XPATH,"//button[@class = 'CustomCalendar_day__MzVhY']")
+#     t_date[7].click()
+#     sleep(2)
+#
+#     btn_date_apply = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
+#     btn_date_apply.click()
+#     sleep(2)
+#
+#     travellers = driver.find_element(By.XPATH,"//span[text() = 'Travelers and cabin class']")
+#     travellers.click()
+#     sleep(2)
+#
+#     adult = driver.find_element(By.XPATH,"//input[@id = 'adult-nudger']")
+#     adult.clear()
+#     adult.send_keys('2')
+#     sleep(2)
+#
+#     btn_apply  = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
+#     btn_apply.click()
+#     sleep(2)
+#
+#     search = driver.find_element(By.XPATH,"//button[@data-testid = 'desktop-cta']")
+#     search.click()
+#     sleep(2)
+#
+#     result_places = driver.find_element(By.XPATH,"//h1[@data-testid = 'CombinedResultsPlaces_title']")
+#     full_text = result_places.text
+#     sleep(2)
+#
+#     assert full_text.startswith("Explore everywhere"), "Failed, search did not work as intended!"
+#     sleep(2)
