@@ -454,81 +454,100 @@ def driver():
 #     assert full_text.startswith("Explore everywhere"), "Failed, search did not work as intended!"
 #     sleep(2)
 #=============================================
-def test_currency (driver):
-    sleep(5)
-
-    btn_regional = driver.find_element(By.XPATH, "//button[@class ='GlobalHeader_buttonDark__ZDU3Z']")
+# def test_currency (driver):
+#     sleep(5)
+#
+#     btn_regional = driver.find_element(By.XPATH, "//button[@class ='GlobalHeader_buttonDark__ZDU3Z']")
+#     btn_regional.click()
+#     sleep(5)
+#
+#     currency = driver.find_element(By.ID, 'culture-selector-currency')
+#     select = Select(currency)
+#     select.select_by_value('ILS')
+#     sleep(5)
+#
+#     btn_save = driver.find_element(By.ID, 'culture-selector-save')
+#     btn_save.click()
+#     sleep(2)
+#
+#     city1 = driver.find_element(By.XPATH, "//input[@id = 'originInput-input']")
+#     city1.clear()
+#     city1.send_keys('Ben Gurion Intl (TLV)')
+#     sleep(2)
+#
+#     first_option = driver.find_element(By.XPATH, "//span[text()='Ben Gurion Intl (TLV)']")
+#     first_option.click()
+#     sleep(1)
+#
+#     city2 = driver.find_element(By.XPATH,"//input[@id = 'destinationInput-input']")
+#     city2.clear()
+#     city2.send_keys('Berlin Brandenburg (BER)')
+#     sleep(2)
+#
+#     first_opt = driver.find_element(By.XPATH, "//span[text()='Berlin Brandenburg (BER)']")
+#     first_opt.click()
+#     sleep(1)
+#
+#     date1 = driver.find_element(By.XPATH, "//span[text() ='Depart']")
+#     date1.click()
+#     sleep(2)
+#
+#     s_date = driver.find_elements(By.XPATH, "//button[@class ='CustomCalendar_day__MzVhY']")
+#     s_date[1].click()
+#     sleep(1)
+#
+#     date2 = driver.find_element(By.XPATH,"//span[text() = 'Add date']")
+#     date2.click()
+#     sleep(2)
+#     t_date = driver.find_elements(By.XPATH,"//button[@class = 'CustomCalendar_day__MzVhY']")
+#     t_date[20].click()
+#     sleep(2)
+#     btn_date_apply = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
+#     btn_date_apply.click()
+#     sleep(2)
+#     travellers = driver.find_element(By.XPATH,"//span[text() = 'Travelers and cabin class']")
+#     travellers.click()
+#     sleep(2)
+#     adult = driver.find_element(By.XPATH,"//input[@id = 'adult-nudger']")
+#     adult.clear()
+#     adult.send_keys('2')
+#     sleep(2)
+#     plus_child = driver.find_element(By.XPATH,"//button[@title = 'More Children']")
+#     plus_child.click()
+#     sleep(1)
+#     age1 = driver.find_element(By.XPATH,"//select[@id = 'children-age-dropdown-0']")
+#     select = Select(age1)
+#     #     #  Option 2: Select by value
+#     select.select_by_value("12")
+#     sleep(2)
+#     btn_apply  = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
+#     btn_apply.click()
+#     sleep(2)
+#     search = driver.find_element(By.XPATH,"//button[@data-testid = 'desktop-cta']")
+#     search.click()
+#     sleep(5)
+#
+#     cur_icon = driver.find_element(By.XPATH,"//span[@class = 'BpkText_bpk-text__MjhhY BpkText_bpk-text--heading-4__Y2FlY']")
+#     icon = cur_icon.text[0]
+#     sleep(2)
+#
+#     assert icon == "₪" , "Failed, Currency did not change after selection!"
+#======================================================
+def test_regional (driver):
+    sleep(2)
+    btn_regional = driver.find_element(By.XPATH,"//button[@class ='GlobalHeader_buttonDark__ZDU3Z']")
     btn_regional.click()
-    sleep(5)
-
-    currency = driver.find_element(By.ID, 'culture-selector-currency')
-    select = Select(currency)
-    select.select_by_value('ILS')
-    sleep(5)
-
-    btn_save = driver.find_element(By.ID, 'culture-selector-save')
+    sleep(4)
+    language = driver.find_element(By.ID,'culture-selector-locale')
+    # Create a Select object to interact with the dropdown
+    select = Select(language)
+    #  Option 2: Select by value
+    select.select_by_value("ar-AE")
+    sleep(2)
+    btn_save = driver.find_element(By.ID,'culture-selector-save')
     btn_save.click()
     sleep(2)
 
-    city1 = driver.find_element(By.XPATH, "//input[@id = 'originInput-input']")
-    city1.clear()
-    city1.send_keys('Ben Gurion Intl (TLV)')
-    sleep(2)
-
-    first_option = driver.find_element(By.XPATH, "//span[text()='Ben Gurion Intl (TLV)']")
-    first_option.click()
-    sleep(1)
-
-    city2 = driver.find_element(By.XPATH,"//input[@id = 'destinationInput-input']")
-    city2.clear()
-    city2.send_keys('Berlin Brandenburg (BER)')
-    sleep(2)
-
-    first_opt = driver.find_element(By.XPATH, "//span[text()='Berlin Brandenburg (BER)']")
-    first_opt.click()
-    sleep(1)
-
-    date1 = driver.find_element(By.XPATH, "//span[text() ='Depart']")
-    date1.click()
-    sleep(2)
-
-    s_date = driver.find_elements(By.XPATH, "//button[@class ='CustomCalendar_day__MzVhY']")
-    s_date[1].click()
-    sleep(1)
-
-    date2 = driver.find_element(By.XPATH,"//span[text() = 'Add date']")
-    date2.click()
-    sleep(2)
-    t_date = driver.find_elements(By.XPATH,"//button[@class = 'CustomCalendar_day__MzVhY']")
-    t_date[20].click()
-    sleep(2)
-    btn_date_apply = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
-    btn_date_apply.click()
-    sleep(2)
-    travellers = driver.find_element(By.XPATH,"//span[text() = 'Travelers and cabin class']")
-    travellers.click()
-    sleep(2)
-    adult = driver.find_element(By.XPATH,"//input[@id = 'adult-nudger']")
-    adult.clear()
-    adult.send_keys('2')
-    sleep(2)
-    plus_child = driver.find_element(By.XPATH,"//button[@title = 'More Children']")
-    plus_child.click()
-    sleep(1)
-    age1 = driver.find_element(By.XPATH,"//select[@id = 'children-age-dropdown-0']")
-    select = Select(age1)
-    #     #  Option 2: Select by value
-    select.select_by_value("12")
-    sleep(2)
-    btn_apply  = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
-    btn_apply.click()
-    sleep(2)
-    search = driver.find_element(By.XPATH,"//button[@data-testid = 'desktop-cta']")
-    search.click()
-    sleep(5)
-
-    cur_icon = driver.find_element(By.XPATH,"//span[@class = 'BpkText_bpk-text__MjhhY BpkText_bpk-text--heading-4__Y2FlY']")
-    icon = cur_icon.text[0]
-    sleep(2)
-
-    assert icon == "₪" , "Failed, Currency did not change after selection!"
+    lang_element = driver.find_element(By.XPATH,"//span[@class = 'BpkText_bpk-text__MjhhY BpkText_bpk-text--label-2__NzNlM']")
+    assert lang_element.text == 'رحلات طيران', "Language not changed, Failed"
+    sleep(4)
