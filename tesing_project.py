@@ -206,7 +206,7 @@ def test_3(driver):
      assert error_message.is_displayed(), 'Error message not shown for invalid destination'
      # //////////////////////////////////////////////////////////////////////////////
 # Save Hotel to Favourite/Wishlist (user is Logged In)
- def test_4(driver):
+def test_4(driver):
      # sleep(15)
      sleep(2)
      Login = driver.find_element(By.CLASS_NAME, "LoginButton_loginText__N2E5Y")
@@ -520,4 +520,464 @@ def test_10(driver):
     BTN_Save = driver.find_element(By.XPATH, "//button[@id='culture-selector-save']")
     BTN_Save.click()
     sleep(3)
+    #///////////////////////////////////////////////////////////////////////////////////////
+    ### First Test: Car rental search with valid dates and locations
+def test_1(driver):
+# sleep(40)
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+    sleep(3)
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DestInput.send_keys('Ben Gurion Intl (TLV)')
+    sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectPickupDate[2].click()
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(2)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[7].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(3)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+    assert len(driver.find_elements(By.CSS_SELECTOR,
+                                    "[data-testid='inventory-card-clickable-button']")) > 0, "No cars were found on the page."
+
+### ------------------------------------------------------------------------------------------------------------###
+### ------------------------------------------------------------------------------------------------------------###
+## Second Test: Car rental with same pick-up and drop-off date and time
+def test_2(driver):
+    # sleep(40)
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+    sleep(3)
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DestInput.send_keys('Ben Gurion Intl (TLV)')
+    sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectPickupDate[3].click()
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(7)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[3].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(5)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+
+    # # assert len(driver.find_elements(By.CSS_SELECTOR, "[data-testid='inventory-card-clickable-button']")) == 0, "Some cars were unexpectedly found on the page."
+    error_boxes = driver.find_elements(By.ID, "carhire-search-controls-errors")
+
+    assert error_boxes, "Error element not found, no error displayed"
+    error_text = error_boxes[0].text.strip()
+    assert error_text != "", "Error box found but empty, expected an error message"
+
+### ------------------------------------------------------------------------------------------------------------###
+
+## Test Three: Car rental with the same pick-up and drop-off location
+def test_3(driver):
+    # sleep(50)
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+
+    #  sleep(20)
+
+    DiffLocCheck = driver.find_element(By.XPATH, "//input[@id='carhire-search-controls-different-drop-off']")
+    DiffLocCheck.click()
+
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-drop-off')
+    DestInput.send_keys('Ben Gurion Intl (TLV)')
+    sleep(4)
+
+    DropoffInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DropoffInput.send_keys('Ben Gurion Intl (TLV)')
+    sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectPickupDate[2].click()
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(5)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[4].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(5)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+
+    error_boxes = driver.find_elements(By.ID, "carhire-search-controls-errors")
+
+    assert error_boxes, "Error element not found, no error displayed"
+    error_text = error_boxes[0].text.strip()
+    assert error_text != "", "Error box found but empty, expected an error message"
+
+### ------------------------------------------------------------------------------------------------------------###
+
+##Fourth Test: Car rental with no available cars for the selected locations
+
+def test_4(driver):
+    #  sleep(30)
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+
+    #  sleep(20)
+
+    DiffLocCheck = driver.find_element(By.XPATH, "//input[@id='carhire-search-controls-different-drop-off']")
+    DiffLocCheck.click()
+
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-drop-off')
+    DestInput.send_keys('Ben Gurion Intl (TLV)')
+    sleep(4)
+
+    DropoffInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DropoffInput.send_keys('Hong Kong Intl (HKG)')
+    sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectPickupDate[2].click()
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(5)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[4].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(5)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+
+    assert len(driver.find_elements(By.CSS_SELECTOR,
+                                    "[data-testid='inventory-card-clickable-button']")) == 0, "Some cars were unexpectedly found on the page."
+
+### ------------------------------------------------------------------------------------------------------------###
+
+##Test five: Car rental with filter applied
+def test_5(driver):
+    #  sleep(30)
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+
+    # sleep(20)
+
+    # DiffLocCheck = driver.find_element(By.XPATH, "//input[@id='carhire-search-controls-different-drop-off']")
+    # DiffLocCheck.click()
+
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DestInput.send_keys('Palma - Majorca (PMI)')
+    sleep(4)
+
+    # DropoffInput = driver.find_element(By.ID, 'carhire-search-controls-location-drop-off')
+    # DropoffInput.send_keys('Hong Kong Intl (HKG)')
+    # sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectPickupDate[2].click()
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(5)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[4].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(5)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+
+    # SeatsFilterB = driver.find_element(By.XPATH,'//h3[text()="Seats"]')
+    # SeatsFilterB.click()
+    # sleep(10)
+    #
+    SeatsFilter = driver.find_element(By.XPATH, "//button[@title='4-5']")
+    SeatsFilter.click()
+    sleep(1)
+
+    ManualTransFilter = driver.find_element(By.XPATH, '//input[@id="filter-option-manual"]')
+    ManualTransFilter.click()
+    sleep(1)
+
+    AcFilter = driver.find_element(By.XPATH, '//input[@id="filter-option-ac"]')
+    AcFilter.click()
+    sleep(5)
+
+    car_cards = driver.find_elements(By.CLASS_NAME, 'CarCard')
+
+    for card in car_cards:
+        labels = card.find_elements(By.CLASS_NAME, 'bpk-icon-label__text')
+        label_texts = [label.text.lower() for label in labels]
+
+        # Seats
+        numbers = [int(t) for t in label_texts if t.isdigit()]
+        assert any(4 <= n <= 5 for n in numbers), f"Seats issue: {numbers}"
+
+        # Transmission
+        assert any("automatic" in t for t in label_texts), "Missing automatic"
+
+        # AC
+        assert any("ac" in t for t in label_texts), "Missing AC"
+
+### ------------------------------------------------------------------------------------------------------------###
+
+##Test Six: Car rental with invalid date input
+def test_6(driver):
+    sleep(30)
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+
+    # sleep(20)
+
+    # DiffLocCheck = driver.find_element(By.XPATH, "//input[@id='carhire-search-controls-different-drop-off']")
+    # DiffLocCheck.click()
+
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DestInput.send_keys('Palma - Majorca (PMI)')
+    sleep(4)
+
+    # DropoffInput = driver.find_element(By.ID, 'carhire-search-controls-location-drop-off')
+    # DropoffInput.send_keys('Hong Kong Intl (HKG)')
+    # sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    print("Number of dates found:", len(SelectPickupDate))
+
+    SelectPickupDate[3].click()
+
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(5)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[1].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(5)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+    assert len(driver.find_elements(By.CSS_SELECTOR,
+                                    "[data-testid='inventory-card-clickable-button']")) > 0, "No cars were found on the page."
+
+### ------------------------------------------------------------------------------------------------------------###
+
+##Test Seven: Car rental with empty pick-up location
+def test_7(driver):
+    # sleep(30)
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+
+    # sleep(20)
+
+    # DiffLocCheck = driver.find_element(By.XPATH, "//input[@id='carhire-search-controls-different-drop-off']")
+    # DiffLocCheck.click()
+
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DestInput.send_keys('')
+    sleep(4)
+
+    # DropoffInput = driver.find_element(By.ID, 'carhire-search-controls-location-drop-off')
+    # DropoffInput.send_keys('Hong Kong Intl (HKG)')
+    # sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    print("Number of dates found:", len(SelectPickupDate))
+
+    SelectPickupDate[2].click()
+
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(5)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[3].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(5)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+
+### ------------------------------------------------------------------------------------------------------------###
+
+##Test eight: Add a rental car to favourites
+def test_8(driver):
+    # sleep(30)
+    LoginButton = driver.find_element(By.XPATH, "//span[@class='LoginButton_loginText__N2E5Y']")
+    LoginButton.click()
+    sleep(3)
+
+    EmailLogIn = driver.find_element(By.XPATH,
+                                     "//span[@class='BpkText_bpk-text__MjhhY BpkText_bpk-text--label-1__OGE0O EmailLoginButton_email-login-button__text__MTg4O']")
+    EmailLogIn.click()
+    sleep(3)
+    EmailInput = driver.find_element(By.XPATH,
+                                     "//input[@class='BpkInput_bpk-input__MDBkO BpkInput_bpk-input--large__YTUyN']")
+    EmailInput.send_keys(
+        'rraagghhaaddd@gmail.com')  ## each time we test we should change the email to a never used email
+
+    NextButton = driver.find_element(By.XPATH,
+                                     "//button[@class='BpkButton_bpk-button__OTE4Z BpkButton_bpk-button--large__NTAyN BpkButton_bpk-button--featured__NTk3N ProgressionButton_progression-button__NjNhM']")
+    NextButton.click()
+    sleep(3)
+
+    MaybeLaterButton = driver.find_element(By.XPATH, "//button[text()='Maybe later']")
+    MaybeLaterButton.click()
+    sleep(3)
+
+    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+    Car_tab.click()
+
+    # sleep(20)
+
+    # DiffLocCheck = driver.find_element(By.XPATH, "//input[@id='carhire-search-controls-different-drop-off']")
+    # DiffLocCheck.click()
+
+    DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
+    DestInput.send_keys('Palma - Majorca (PMI)')
+    sleep(4)
+
+    # DropoffInput = driver.find_element(By.ID, 'carhire-search-controls-location-drop-off')
+    # DropoffInput.send_keys('Hong Kong Intl (HKG)')
+    # sleep(4)
+
+    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate.click()
+    SelectPickupDate = driver.find_elements(By.XPATH,
+                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    ##  print("Number of dates found:", len(SelectPickupDate))
+
+    SelectPickupDate[2].click()
+
+    sleep(3)
+
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(5)
+    sleep(3)
+
+    DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
+    DropoffDate.click()
+    sleep(3)
+    SelectDropoffDate = driver.find_elements(By.XPATH,
+                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate[3].click()
+    sleep(3)
+
+    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    DropoffTime.select_by_index(7)
+    sleep(5)
+
+    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton.click()
+    sleep(3)
+
+    Fav = driver.find_element(By.XPATH,
+                              "//button[@class='BpkSaveButton_bpk-save-button__ZGY0M bpk-save-button__default']")
+    Fav.click()
+    sleep(3)
+
+    wishlist = driver.find_element(By.XPATH,
+                                   "//a[@class='BpkButton_bpk-button__ZGRmN BpkButton_bpk-button--link-on-dark__MmI0Z SecondaryNav_SecondaryNav__heartIcon__YjFhZ']")
+    wishlist.click()
+    sleep(7)
+    saved_cars = driver.find_elements(By.CSS_SELECTOR, '[data-testid="CAR_HIRE_DEAL_GROUP_V1"]')
+    assert len(saved_cars) > 0, "No rental cars were found in the wishlist"
 
