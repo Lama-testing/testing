@@ -1,7 +1,6 @@
 import sys
 from time import sleep
 import pytest
-import uc
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
