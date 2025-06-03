@@ -93,8 +93,8 @@ def test_flight(driver):
     sleep(3)
     # //////////////////////////////////////////////////////////////////////////////
 # Hotel Search with valid details
-def test_1(driver):
-    sleep(15)
+def test_01(driver):
+    sleep(20)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
     Hotel_tab.click()
     # sleep(30)
@@ -134,7 +134,7 @@ def test_1(driver):
     assert len(results) > 0, "No hotel results were found."
 # //////////////////////////////////////////////////////////////////////////////
 # Hotel Search functionality with Invalid destination or hotel name
-def test_2(driver):
+def test_02(driver):
     sleep(15)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
     Hotel_tab.click()
@@ -174,7 +174,7 @@ def test_2(driver):
     assert error_message.is_displayed(),'Error message not shown for invalid destination'
 # //////////////////////////////////////////////////////////////////////////////
 # Hotel Search functionality with Empty destination or hotel name
-def test_3(driver):
+def test_03(driver):
      sleep(15)
      Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
      Hotel_tab.click()
@@ -206,7 +206,7 @@ def test_3(driver):
      assert error_message.is_displayed(), 'Error message not shown for invalid destination'
      # //////////////////////////////////////////////////////////////////////////////
 # Save Hotel to Favourite/Wishlist (user is Logged In)
-def test_4(driver):
+def test_04(driver):
      # sleep(15)
      sleep(2)
      Login = driver.find_element(By.CLASS_NAME, "LoginButton_loginText__N2E5Y")
@@ -259,7 +259,7 @@ def test_4(driver):
      assert Header.is_displayed(), " Not Saved,Hotel not found in wishlist "
         # //////////////////////////////////////////////////////////////////////////////
     # Save Hotel to Favourite/Wishlist (user is not Logged In)
-def test_5(driver):
+def test_05(driver):
     sleep(15)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
     Hotel_tab.click()
@@ -284,14 +284,14 @@ def test_5(driver):
     btn_search = driver.find_element(By.CLASS_NAME,'BpkButton_bpk-button__ZGRmN.BpkButton_bpk-button--large__ZmE2M.bpk-button--submit.ExpandableLayout_ExpandableLayout__cta__OWY1Z')
     btn_search.click()
     sleep(5)
-    saved_item = driver.find_element(By.XPATH,"//div[@class='BpkSaveButton_bpk-save-button__heartIcon__QCVLd BpkSaveButton_bpk-save-button__icon__udiKX BpkSaveButton_bpk-save-button__heartIcon--default__AP4HH']")
+    saved_item = driver.find_element(By.XPATH,"//button[@class='BpkSaveButton_bpk-save-button__vYPc- bpk-save-button__default']")
     saved_item.click()
     sleep(3)
-    Header = driver.find_element(By.XPATH, "//h2[@class='BpkText_bpk-text__aIB-U BpkText_bpk-text--heading-2__ir1RO LoginIntro_login-intro__title__qM9RF']")
+    Header = driver.find_element(By.XPATH, "//h2[@class='BpkText_bpk-text__MQ3jy BpkText_bpk-text--heading-2__TOA0c LoginIntro_login-intro__title__J0IOr']")
     assert Header.is_displayed(), "Logged in "
         # //////////////////////////////////////////////////////////////////////////////
 # Filter Hotels by Popular Filters
-def test_6(driver):
+def test_06(driver):
     sleep(15)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
     Hotel_tab.click()
@@ -337,15 +337,14 @@ def test_6(driver):
                                      "//button[@class='BpkButton_bpk-button__ZGRmN BpkButton_bpk-button--large__ZmE2M bpk-button--submit ExpandableLayout_ExpandableLayout__cta__OWY1Z']")
     btn_search.click()
     sleep(5)
-    filter_1 = driver.find_element(By.XPATH,
-                                   "//button[@class='BpkSelectableChip_bpk-chip__bucgu BpkSelectableChip_bpk-chip--default__JiSai BpkSelectableChip_bpk-chip--default-selected__GCKDV BpkSelectableChip_bpk-chip--default-dismissible__YQ924 BpkSelectableChip_bpk-chip--default-dismissible__YQ924 SelectedFiltersTags_SelectedFiltersTags__item__pGFee']")
+    filter_1 = driver.find_element(By.XPATH,"//button[@class='BpkSelectableChip_bpk-chip__L0AHU BpkSelectableChip_bpk-chip--default__IQOfo BpkSelectableChip_bpk-chip--default-selected__MTTKn BpkSelectableChip_bpk-chip--default-dismissible__bLSP3 BpkSelectableChip_bpk-chip--default-dismissible__bLSP3 SelectedFiltersTags_SelectedFiltersTags__item__pGFee']")
     # filter_2= driver.find_element(By.XPATH,"//button[@class='BpkSelectableChip_bpk-chip__bucgu BpkSelectableChip_bpk-chip--default__JiSai BpkSelectableChip_bpk-chip--default-selected__GCKDV BpkSelectableChip_bpk-chip--default-dismissible__YQ924 BpkSelectableChip_bpk-chip--default-dismissible__YQ924 SelectedFiltersTags_SelectedFiltersTags__item__pGFee']")
     # filter_3= driver.find_element(By.XPATH,"//button[@class='BpkSelectableChip_bpk-chip__bucgu BpkSelectableChip_bpk-chip--default__JiSai BpkSelectableChip_bpk-chip--default-selected__GCKDV BpkSelectableChip_bpk-chip--default-dismissible__YQ924 BpkSelectableChip_bpk-chip--default-dismissible__YQ924 SelectedFiltersTags_SelectedFiltersTags__item__pGFee']")
     assert filter_1.is_displayed(), 'Popular Filter Not selected'
     sleep(2)
     # //////////////////////////////////////////////////////////////////////////////
 # Verify “Clear” hotel Filters button Functionality.
-def test_7(driver):
+def test_07(driver):
     sleep(15)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
     Hotel_tab.click()
@@ -378,12 +377,10 @@ def test_7(driver):
     BTN_Done = driver.find_element(By.XPATH, "//span[text()='Done']")
     BTN_Done.click()
     sleep(2)
-    btn_search = driver.find_element(By.XPATH,
-                                     "//button[@class='BpkButton_bpk-button__ZGRmN BpkButton_bpk-button--large__ZmE2M bpk-button--submit ExpandableLayout_ExpandableLayout__cta__OWY1Z']")
+    btn_search = driver.find_element(By.XPATH,"//button[@class='BpkButton_bpk-button__ZGRmN BpkButton_bpk-button--large__ZmE2M bpk-button--submit ExpandableLayout_ExpandableLayout__cta__OWY1Z']")
     btn_search.click()
     sleep(7)
-    btn_filter = driver.find_element(By.XPATH,
-                                     "//button[@class='BpkButton_bpk-button__uaurf BpkButton_bpk-button--large__+EuH4 BpkButton_bpk-button--featured__BCKig']")
+    btn_filter = driver.find_element(By.XPATH,"//button[@class='BpkButton_bpk-button__J0Ljq BpkButton_bpk-button--large__jPpKI BpkButton_bpk-button--featured__joUSS']")
     btn_filter.click()
     sleep(2)
     free_cancellation = driver.find_element(By.XPATH, "//input[@id='free_cancellation']")
@@ -395,24 +392,19 @@ def test_7(driver):
     Review = driver.find_element(By.XPATH, "//input[@id='4']")
     Review.click()
     sleep(2)
-    show_result = driver.find_element(By.XPATH,
-                                      "//button[@class='BpkButton_bpk-button__uaurf bpk-button--primary ResultButton_ResultButton__8ZxqF']")
+    show_result = driver.find_element(By.XPATH,"//button[@class='BpkButton_bpk-button__J0Ljq bpk-button--primary ResultButton_ResultButton__8ZxqF']")
     show_result.click()
     sleep(2)
-    btn_filter = driver.find_element(By.XPATH,
-                                     "//button[@class='BpkButton_bpk-button__uaurf BpkButton_bpk-button--large__+EuH4 BpkButton_bpk-button--featured__BCKig']")
+    btn_filter = driver.find_element(By.XPATH,"//button[@class='BpkButton_bpk-button__J0Ljq BpkButton_bpk-button--large__jPpKI BpkButton_bpk-button--featured__joUSS']")
     btn_filter.click()
     sleep(2)
-    btn_clear = driver.find_element(By.XPATH,
-                                    "//button[@class='BpkButton_bpk-button__uaurf BpkButton_bpk-button--link__dOrE7 DesktopFilters_Filters__filtersClear__EoPPi']")
+    btn_clear = driver.find_element(By.XPATH,"//button[@class='BpkButton_bpk-button__J0Ljq BpkButton_bpk-button--link__CXGRg DesktopFilters_Filters__filtersClear__EoPPi']")
     btn_clear.click()
     sleep(3)
-    Text = driver.find_element(By.XPATH,
-                               "//h3[@class='BpkText_bpk-text__aIB-U BpkText_bpk-text--heading-3__px2uy']")
-    assert Text.is_displayed(), 'not cleared'
+    assert not free_cancellation.is_selected(), 'not cleared'
     # //////////////////////////////////////////////////////////////////////////////
 # Verify the Date Range Selection
-def test_8(driver):
+def test_08(driver):
     sleep(30)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
     Hotel_tab.click()
@@ -453,7 +445,7 @@ def test_8(driver):
 
     # Verify hotel details page
 # //////////////////////////////////////////////////////////////////////////////
-def test_9(driver):
+def test_09(driver):
     sleep(15)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
     Hotel_tab.click()
@@ -486,15 +478,14 @@ def test_9(driver):
     BTN_Done = driver.find_element(By.XPATH, "//span[text()='Done']")
     BTN_Done.click()
     sleep(2)
-    btn_search = driver.find_element(By.XPATH,
-                                     "//button[@class='BpkButton_bpk-button__ZGRmN BpkButton_bpk-button--large__ZmE2M bpk-button--submit ExpandableLayout_ExpandableLayout__cta__OWY1Z']")
+    btn_search = driver.find_element(By.XPATH,"//button[@class='BpkButton_bpk-button__ZGRmN BpkButton_bpk-button--large__ZmE2M bpk-button--submit ExpandableLayout_ExpandableLayout__cta__OWY1Z']")
     btn_search.click()
     sleep(7)
-    Cards = driver.find_elements(By.XPATH,
-                                 "//a[@class='BpkCard_bpk-card__OQ2it BpkCard_bpk-card--no-elevation__oA0Q5 CardLayout_CardLayout__primary__4WU9W CardLayout_CardLayout__primary--horizontal__jbbi2']")
+    Cards = driver.find_elements(By.XPATH, "//div[@class='CardLayout_CardLayout__primary__4WU9W CardLayout_CardLayout__primary--horizontal__jbbi2']")
     assert len(Cards) > 0, 'hotel details page does not display '
+
     # //////////////////////////////////////////////////////////////////////////////
-    # Changing the currency according to the city/region
+    # Changing the currency according to the city/region(bug)
 def test_10(driver):
     sleep(30)
     Regional_Setting = driver.find_element(By.XPATH, "//button[@class='GlobalHeader_buttonDark__ZDU3Z']")
@@ -510,13 +501,14 @@ def test_10(driver):
     assert Currency.text == 'TRY - TL', 'it does not work right '
     sleep(3)
     Country.click()
-    # U_S = driver.find_element(By.XPATH,"//option[text()='Israel']")
-    # U_S.click()
-    # US_Currency = driver.find_element(By.XPATH,"//select[@class='BpkSelect_bpk-select__YmY5M']").get_attribute('value')
-    # assert US_Currency == 'ILS - ₪' , 'it does not work right'
-    # sleep(3)
-    # Country.click()
-    # sleep(3)
+    U_S = driver.find_element(By.XPATH,"//option[text()='Israel']")
+    U_S.click()
+    US_Currency = driver.find_element(By.XPATH,"//select[@class='BpkSelect_bpk-select__YmY5M']").get_attribute('value')
+    assert US_Currency == 'ILS - ₪' , 'it does not work right'
+    print('it is already a bug !!!')
+    sleep(3)
+    Country.click()
+    sleep(3)
     BTN_Save = driver.find_element(By.XPATH, "//button[@id='culture-selector-save']")
     BTN_Save.click()
     sleep(3)
@@ -796,7 +788,7 @@ def test_5(driver):
 
 ##Test Six: Car rental with invalid date input
 def test_6(driver):
-    sleep(30)
+    # sleep(30)
     Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
     Car_tab.click()
 
@@ -849,7 +841,7 @@ def test_6(driver):
 
 ##Test Seven: Car rental with empty pick-up location
 def test_7(driver):
-    # sleep(30)
+    sleep(30)
     Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
     Car_tab.click()
 
@@ -912,7 +904,7 @@ def test_8(driver):
     EmailInput = driver.find_element(By.XPATH,
                                      "//input[@class='BpkInput_bpk-input__MDBkO BpkInput_bpk-input--large__YTUyN']")
     EmailInput.send_keys(
-        'rraagghhaaddd@gmail.com')  ## each time we test we should change the email to a never used email
+        'rraagghhaadddd@gmail.com')  ## each time we test we should change the email to a never used email
 
     NextButton = driver.find_element(By.XPATH,
                                      "//button[@class='BpkButton_bpk-button__OTE4Z BpkButton_bpk-button--large__NTAyN BpkButton_bpk-button--featured__NTk3N ProgressionButton_progression-button__NjNhM']")
