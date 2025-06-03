@@ -27,7 +27,7 @@ def driver():
     yield driver
     driver.quit()
 
-
+#================================================================================================================================
 def test_flight(driver):
     sleep(20)
     city1 = driver.find_element(By.XPATH,"//input[@id = 'originInput-input']")
@@ -91,7 +91,7 @@ def test_flight(driver):
     sleep(2)
     assert len(flight_deals) > 0, "No flight deals found — search might have failed or no flights are available."
     sleep(3)
-
+#================================================================================================================================
 # Hotel Search with valid details
 def test_01(driver):
     sleep(20)
@@ -132,7 +132,7 @@ def test_01(driver):
     sleep(10)
     results = driver.find_elements(By.XPATH,"//div[@class='HotelCardsListChunk_HotelCardsListChunk__card__O2gi3 HotelCardsListChunk_HotelCardsListChunk__card--newLayout__DTkR9 HotelCardsListChunk_Animation__zkf0j']")
     assert len(results) > 0, "No hotel results were found."
-# //////////////////////////////////////////////////////////////////////////////
+#================================================================================================================================
 # Hotel Search functionality with Invalid destination or hotel name
 def test_02(driver):
     sleep(15)
@@ -172,7 +172,7 @@ def test_02(driver):
     sleep(5)
     error_message= driver.find_element(By.XPATH,"//span[@class='BpkText_bpk-text__ZjI3M BpkText_bpk-text--body-default__ODg2M SearchControls__destinationErr--message']")
     assert error_message.is_displayed(),'Error message not shown for invalid destination'
-# //////////////////////////////////////////////////////////////////////////////
+#================================================================================================================================
 # Hotel Search functionality with Empty destination or hotel name
 def test_03(driver):
      sleep(15)
@@ -201,7 +201,7 @@ def test_03(driver):
      error_message = driver.find_element(By.XPATH,
                                             "//span[@class='BpkText_bpk-text__ZjI3M BpkText_bpk-text--body-default__ODg2M SearchControls__destinationErr--message']")
      assert error_message.is_displayed(), 'Error message not shown for invalid destination'
-     # //////////////////////////////////////////////////////////////////////////////
+     #================================================================================================================================
 # Save Hotel to Favourite/Wishlist (user is Logged In)
 def test_04(driver):
      # sleep(15)
@@ -240,9 +240,6 @@ def test_04(driver):
      checkout = driver.find_element(By.XPATH, "//span[text() = '30']")
      checkout.click()
      sleep(1.5)
-    # Rooms= driver.find_element(By.XPATH,"//input[@id='guests-rooms']")
-        # Rooms.click()
-        # sleep(3)
      btn_search = driver.find_element(By.CLASS_NAME, 'BpkButton_bpk-button__ZGRmN.BpkButton_bpk-button--large__ZmE2M.bpk-button--submit.ExpandableLayout_ExpandableLayout__cta__OWY1Z')
      btn_search.click()
      sleep(5)
@@ -254,7 +251,7 @@ def test_04(driver):
      sleep(5)
      Header = driver.find_element(By.XPATH, "//h3[text()='Added today']")
      assert Header.is_displayed(), " Not Saved,Hotel not found in wishlist "
-        # //////////////////////////////////////////////////////////////////////////////
+        #================================================================================================================================
     # Save Hotel to Favourite/Wishlist (user is not Logged In)
 def test_05(driver):
     sleep(15)
@@ -275,9 +272,6 @@ def test_05(driver):
     checkout = driver.find_element(By.XPATH, "//span[text() = '26']")
     checkout.click()
     sleep(3)
-    # Rooms= driver.find_element(By.XPATH,"//input[@id='guests-rooms']")
-    # Rooms.click()
-    # sleep(3)
     btn_search = driver.find_element(By.CLASS_NAME,'BpkButton_bpk-button__ZGRmN.BpkButton_bpk-button--large__ZmE2M.bpk-button--submit.ExpandableLayout_ExpandableLayout__cta__OWY1Z')
     btn_search.click()
     sleep(5)
@@ -286,7 +280,7 @@ def test_05(driver):
     sleep(3)
     Header = driver.find_element(By.XPATH, "//h2[@class='BpkText_bpk-text__MQ3jy BpkText_bpk-text--heading-2__TOA0c LoginIntro_login-intro__title__J0IOr']")
     assert Header.is_displayed(), "Logged in "
-        # //////////////////////////////////////////////////////////////////////////////
+        #================================================================================================================================
 # Filter Hotels by Popular Filters
 def test_06(driver):
     sleep(15)
@@ -325,7 +319,7 @@ def test_06(driver):
     # filter_3= driver.find_element(By.XPATH,"//button[@class='BpkSelectableChip_bpk-chip__bucgu BpkSelectableChip_bpk-chip--default__JiSai BpkSelectableChip_bpk-chip--default-selected__GCKDV BpkSelectableChip_bpk-chip--default-dismissible__YQ924 BpkSelectableChip_bpk-chip--default-dismissible__YQ924 SelectedFiltersTags_SelectedFiltersTags__item__pGFee']")
     assert filter_1.is_displayed(), 'Popular Filter Not selected'
     sleep(2)
-    # //////////////////////////////////////////////////////////////////////////////
+    #================================================================================================================================
 # Verify “Clear” hotel Filters button Functionality.
 def test_07(driver):
     sleep(15)
@@ -385,7 +379,7 @@ def test_07(driver):
     btn_clear.click()
     sleep(3)
     assert not free_cancellation.is_selected(), 'not cleared'
-    # //////////////////////////////////////////////////////////////////////////////
+    #================================================================================================================================
 # Verify the Date Range Selection
 def test_08(driver):
     sleep(30)
@@ -412,8 +406,8 @@ def test_08(driver):
     # print(checkoutdate)
     assert checkindate < checkoutdate, 'invalid date range'
 
+    # ================================================================================================================================
     # Verify hotel details page
-# //////////////////////////////////////////////////////////////////////////////
 def test_09(driver):
     sleep(15)
     Hotel_tab = driver.find_element(By.XPATH, "//span[text()='Hotels']")
@@ -453,7 +447,7 @@ def test_09(driver):
     Cards = driver.find_elements(By.XPATH, "//div[@class='CardLayout_CardLayout__primary__4WU9W CardLayout_CardLayout__primary--horizontal__jbbi2']")
     assert len(Cards) > 0, 'hotel details page does not display '
 
-    # //////////////////////////////////////////////////////////////////////////////
+    #================================================================================================================================
     # Changing the currency according to the city/region(bug)
 def test_10(driver):
     sleep(30)
@@ -481,7 +475,7 @@ def test_10(driver):
     BTN_Save = driver.find_element(By.XPATH, "//button[@id='culture-selector-save']")
     BTN_Save.click()
     sleep(3)
-    #///////////////////////////////////////////////////////////////////////////////////////
+    #================================================================================================================================
     ### First Test: Car rental search with valid dates and locations
 def test_1(driver):
 # sleep(40)
@@ -521,8 +515,7 @@ def test_1(driver):
     assert len(driver.find_elements(By.CSS_SELECTOR,
                                     "[data-testid='inventory-card-clickable-button']")) > 0, "No cars were found on the page."
 
-### ------------------------------------------------------------------------------------------------------------###
-### ------------------------------------------------------------------------------------------------------------###
+#================================================================================================================================
 ## Second Test: Car rental with same pick-up and drop-off date and time
 def test_2(driver):
     # sleep(40)
@@ -567,7 +560,7 @@ def test_2(driver):
     error_text = error_boxes[0].text.strip()
     assert error_text != "", "Error box found but empty, expected an error message"
 
-### ------------------------------------------------------------------------------------------------------------###
+#================================================================================================================================
 
 ## Test Three: Car rental with the same pick-up and drop-off location
 def test_3(driver):
@@ -621,7 +614,7 @@ def test_3(driver):
     error_text = error_boxes[0].text.strip()
     assert error_text != "", "Error box found but empty, expected an error message"
 
-### ------------------------------------------------------------------------------------------------------------###
+#================================================================================================================================
 
 ##Fourth Test: Car rental with no available cars for the selected locations
 
@@ -673,7 +666,7 @@ def test_4(driver):
     assert len(driver.find_elements(By.CSS_SELECTOR,
                                     "[data-testid='inventory-card-clickable-button']")) == 0, "Some cars were unexpectedly found on the page."
 
-### ------------------------------------------------------------------------------------------------------------###
+#================================================================================================================================
 
 ##Test five: Car rental with filter applied
 def test_5(driver):
@@ -746,53 +739,55 @@ def test_5(driver):
         # AC
         assert any("ac" in t for t in label_texts), "Missing AC"
 
-### ------------------------------------------------------------------------------------------------------------###
+#================================================================================================================================
 
 ##Test Six: Car rental with invalid date input
 def test_6(driver):
-    # sleep(30)
-    Car_tab = driver.find_element(By.XPATH, "//span[text()='Car rental']")
+
+    sleep(30)
+    Car_tab = driver.find_element(By.XPATH,"//span[text()='Car rental']")
     Car_tab.click()
 
+    #sleep(20)
+
+    # DiffLocCheck = driver.find_element(By.XPATH, "//input[@id='carhire-search-controls-different-drop-off']")
+    # DiffLocCheck.click()
 
     DestInput = driver.find_element(By.ID, 'carhire-search-controls-location-pick-up')
     DestInput.send_keys('Palma - Majorca (PMI)')
     sleep(4)
 
+    # DropoffInput = driver.find_element(By.ID, 'carhire-search-controls-location-drop-off')
+    # DropoffInput.send_keys('Hong Kong Intl (HKG)')
+    # sleep(4)
 
-    PickupDate = driver.find_element(By.XPATH, "//span[text()='Pickup date']")
+    PickupDate = driver.find_element(By.XPATH,"//span[text()='Pickup date']")
     PickupDate.click()
-    SelectPickupDate = driver.find_elements(By.XPATH,
-                                            "//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectPickupDate = driver.find_elements(By.XPATH,"//button[@class ='BpkCalendarDate_bpk-calendar-date__N2RjO']")
     print("Number of dates found:", len(SelectPickupDate))
 
     SelectPickupDate[3].click()
 
     sleep(3)
-
-    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
-    PickupTime.select_by_index(5)
-    sleep(3)
-
     DropoffDate = driver.find_element(By.XPATH, "//span[text() = 'Drop-off date']")
     DropoffDate.click()
     sleep(3)
-    SelectDropoffDate = driver.find_elements(By.XPATH,
-                                             "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
+    SelectDropoffDate = driver.find_elements(By.XPATH, "//button[@class = 'BpkCalendarDate_bpk-calendar-date__N2RjO']")
     SelectDropoffDate[1].click()
-    sleep(3)
+    sleep(4)
 
-    DropoffTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-drop-off']"))
+    PickupTime = Select(driver.find_element(By.XPATH, "//select[@id ='carhire-search-controls-time-pick-up']"))
+    PickupTime.select_by_index(2)
+    sleep(3)
+    DropoffTime = Select(driver.find_element(By.XPATH,"//select[@id ='carhire-search-controls-time-drop-off']"))
     DropoffTime.select_by_index(7)
     sleep(5)
 
-    SearchButton = driver.find_element(By.ID, 'carhire-search-controls-search-button')
+    SearchButton = driver.find_element(By.ID,'carhire-search-controls-search-button')
     SearchButton.click()
     sleep(3)
-    assert len(driver.find_elements(By.CSS_SELECTOR,
-                                    "[data-testid='inventory-card-clickable-button']")) > 0, "No cars were found on the page."
-
-### ------------------------------------------------------------------------------------------------------------###
+    assert len(driver.find_elements(By.CSS_SELECTOR, "[data-testid='inventory-card-clickable-button']")) > 0, "No cars were found on the page."
+#================================================================================================================================
 
 ##Test Seven: Car rental with empty pick-up location
 def test_7(driver):
@@ -836,7 +831,7 @@ def test_7(driver):
     SearchButton.click()
     sleep(3)
 
-### ------------------------------------------------------------------------------------------------------------###
+#================================================================================================================================
 
 ##Test eight: Add a rental car to favourites
 def test_8(driver):
@@ -916,7 +911,7 @@ def test_8(driver):
     saved_cars = driver.find_elements(By.CSS_SELECTOR, '[data-testid="CAR_HIRE_DEAL_GROUP_V1"]')
     assert len(saved_cars) > 0, "No rental cars were found in the wishlist"
 
-# *******************************************************************************************
+#================================================================================================================================
 
     # -Login via email Testing (first time/ new email)
 def test_1(driver):
@@ -939,7 +934,7 @@ def test_1(driver):
     notf_btn = driver.find_element(By.XPATH, "//button[text()='Maybe later']")
     notf_btn.click()
     sleep(3)
-
+    # ================================================================================================================================
     # -Login via facebook Testing (valid user)
 def test_2(driver):
     login_btn = driver.find_element(By.XPATH, "//span[@class='LoginButton_loginText__N2E5Y']")
@@ -960,7 +955,7 @@ def test_2(driver):
     sleep(3)
     driver.get('https://www.skyscanner.co.il')
     sleep(10)
-
+    # ================================================================================================================================
     # -Logout Testing
 def test_3(driver):
     sleep(5)
@@ -997,7 +992,7 @@ def test_3(driver):
     login_btn = driver.find_element(By.XPATH, "//span[@class='LoginButton_loginText__N2E5Y']")
     assert login_btn.is_displayed() == True, 'Error: Login button is not displayed'
     sleep(5)
-    # *********************************************************************************
+    #================================================================================================================================
     # Privecy Policy link
 def test_4(driver):
     login_btn = driver.find_element(By.XPATH, "//span[@class='LoginButton_loginText__N2E5Y']")
@@ -1007,7 +1002,7 @@ def test_4(driver):
     pp_link = driver.find_element(By.XPATH, "//a[text()='Privacy Policy']")
     pp_link.click()
     sleep(3)
-    # *********************************************************************************
+    #================================================================================================================================
     # check box (remember me)
 def test_5(driver):
     login_btn = driver.find_element(By.XPATH, "//span[@class='LoginButton_loginText__N2E5Y']")
@@ -1017,7 +1012,7 @@ def test_5(driver):
     checkBox = driver.find_element(By.XPATH,"//input[@name='remember-me']")
     checkBox.click()
     sleep(6)
-#**********************************************************************************
+#================================================================================================================================
 def test_flight_no_city2 (driver):
     sleep(2)
     city1 = driver.find_element(By.XPATH, "//input[@id = 'originInput-input']")
@@ -1079,7 +1074,7 @@ def test_flight_no_city2 (driver):
 
     assert city2.text == '', "Search  have failed ."
     sleep(3)
-#=======================================================================================
+#================================================================================================================================
 def test_sorting_flights(driver):
 
     sleep(3)
@@ -1161,7 +1156,7 @@ def test_sorting_flights(driver):
 
     sleep(2)
 
-#======================================================
+#================================================================================================================================
 def test_saved_flights(driver):
     sleep(2)
 
@@ -1265,7 +1260,7 @@ def test_saved_flights(driver):
     sleep(2)
     assert saved_flight.text == 'Tel Aviv to Berlin', "Flight not saved!"
     sleep(2)
-#=========================================================================
+#================================================================================================================================
 def test_same_deptodes(driver):
     sleep(2)
 
@@ -1349,7 +1344,7 @@ def test_regional (driver):
     lang_element = driver.find_element(By.XPATH,"//span[@class = 'BpkText_bpk-text__MjhhY BpkText_bpk-text--label-2__NzNlM']")
     assert lang_element.text == 'رحلات طيران', "Language not changed, Failed"
     sleep(4)
-#================================================
+#================================================================================================================================
 
 def test_currency (driver):
     sleep(2)
