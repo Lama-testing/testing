@@ -247,80 +247,80 @@ def test_saved_flights(driver):
     city1.clear()
     city1.send_keys('Ben Gurion Intl (TLV)')
     sleep(2)
-def test_sorting_flights(driver):
-    first_option.click()
-    sleep(1)
-
-    city2 = driver.find_element(By.XPATH,"//input[@id = 'destinationInput-input']")
-    city2.clear()
-    city2.send_keys('Berlin Brandenburg (BER)')
-    sleep(2)
-def test_sorting_flights(driver):
-    s_date[1].click()
-    sleep(1)
-
-    date2 = driver.find_element(By.XPATH,"//span[text() = 'Add date']")
-    date2.click()
-    sleep(2)
-
-    t_date = driver.find_elements(By.XPATH,"//button[@class = 'CustomCalendar_day__MzVhY']")
-    t_date[20].click()
-    sleep(2)
-    btn_date_apply = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
-    btn_date_apply.click()
-    sleep(2)
-
-    travellers = driver.find_element(By.XPATH,"//span[text() = 'Travelers and cabin class']")
-    travellers.click()
-    sleep(2)
-
-    adult = driver.find_element(By.XPATH,"//input[@id = 'adult-nudger']")
-    adult.clear()
-    adult.send_keys('2')
-    sleep(2)
-
-    plus_child = driver.find_element(By.XPATH,"//button[@title = 'More Children']")
-    plus_child.click()
-    sleep(1)
-
-    age1 = driver.find_element(By.XPATH,"//select[@id = 'children-age-dropdown-0']")
-    select = Select(age1)
-        #     #  Option 2: Select by value
-    select.select_by_value("12")
-    sleep(2)
-
-
-
-
-
-
-
-    btn_apply  = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
-    btn_apply.click()
-
-    sleep(2)
-
-    search = driver.find_element(By.XPATH,"//button[@data-testid = 'desktop-cta']")
-    search.click()
-    sleep(5)
-
-
-
-
-    btn_save = driver.find_element(By.XPATH,"//button[@aria-label = 'Save flight, option 1 from Ben Gurion Intl to Berlin Brandenburg']")
-    btn_save.click()
-    sleep(5)
-
-    btn_manage = driver.find_element(By.XPATH,"//p[text() = 'Manage alert']")
-    sleep(2)
-    btn_manage.click()
-    sleep(2)
-
-    saved_flight = driver.find_element(By.XPATH,"//span[@class = 'BpkText_bpk-text__ZjI3M BpkText_bpk-text--heading-4__MDlkY']")
-
-    sleep(2)
-    assert saved_flight.text == 'Tel Aviv to Berlin', "Flight not saved!"
-    sleep(2)
+# def test_sorting_flights(driver):
+#     first_option.click()
+#     sleep(1)
+#
+#     city2 = driver.find_element(By.XPATH,"//input[@id = 'destinationInput-input']")
+#     city2.clear()
+#     city2.send_keys('Berlin Brandenburg (BER)')
+#     sleep(2)
+# def test_sorting_flights(driver):
+#     s_date[1].click()
+#     sleep(1)
+#
+#     date2 = driver.find_element(By.XPATH,"//span[text() = 'Add date']")
+#     date2.click()
+#     sleep(2)
+#
+#     t_date = driver.find_elements(By.XPATH,"//button[@class = 'CustomCalendar_day__MzVhY']")
+#     t_date[20].click()
+#     sleep(2)
+#     btn_date_apply = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
+#     btn_date_apply.click()
+#     sleep(2)
+#
+#     travellers = driver.find_element(By.XPATH,"//span[text() = 'Travelers and cabin class']")
+#     travellers.click()
+#     sleep(2)
+#
+#     adult = driver.find_element(By.XPATH,"//input[@id = 'adult-nudger']")
+#     adult.clear()
+#     adult.send_keys('2')
+#     sleep(2)
+#
+#     plus_child = driver.find_element(By.XPATH,"//button[@title = 'More Children']")
+#     plus_child.click()
+#     sleep(1)
+#
+#     age1 = driver.find_element(By.XPATH,"//select[@id = 'children-age-dropdown-0']")
+#     select = Select(age1)
+#         #     #  Option 2: Select by value
+#     select.select_by_value("12")
+#     sleep(2)
+#
+#
+#
+#
+#
+#
+#
+#     btn_apply  = driver.find_element(By.XPATH,"//button[text() = 'Apply']")
+#     btn_apply.click()
+#
+#     sleep(2)
+#
+#     search = driver.find_element(By.XPATH,"//button[@data-testid = 'desktop-cta']")
+#     search.click()
+#     sleep(5)
+#
+#
+#
+#
+#     btn_save = driver.find_element(By.XPATH,"//button[@aria-label = 'Save flight, option 1 from Ben Gurion Intl to Berlin Brandenburg']")
+#     btn_save.click()
+#     sleep(5)
+#
+#     btn_manage = driver.find_element(By.XPATH,"//p[text() = 'Manage alert']")
+#     sleep(2)
+#     btn_manage.click()
+#     sleep(2)
+#
+#     saved_flight = driver.find_element(By.XPATH,"//span[@class = 'BpkText_bpk-text__ZjI3M BpkText_bpk-text--heading-4__MDlkY']")
+#
+#     sleep(2)
+#     assert saved_flight.text == 'Tel Aviv to Berlin', "Flight not saved!"
+#     sleep(2)
 #=========================================================================Add commentMore actions
 
 # Hotel Search with valid details
